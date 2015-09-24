@@ -6,14 +6,17 @@ use std::slice::SliceConcatExt;
 extern crate unicode_segmentation;
 
 pub fn normalize_tag(tag: &str) -> Result<String, &'static str> {
-
     if tag.is_empty() {
         Err("Tag is empty")
     } else {
         let lc = tag.to_lowercase();
         let words: Vec<&str> = lc.unicode_words().collect();
         let joined = words.join("-");
-        Ok(joined)
+        if joined.is_empty() {
+            Err("Tag is empty after normalization")
+        } else {
+            Ok(joined)
+        }
     }
 }
 
