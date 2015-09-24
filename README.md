@@ -1,2 +1,2 @@
-# tag-normalize-rs
+# normalize-tag-rs
 Normalizes tags
